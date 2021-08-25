@@ -1,18 +1,18 @@
 const router = require('express').Router()
-const Datum = require('../models/datum')
+const Events = require('../models/events')
 
 router.get('/', (request, response) => {
-    Datum
+    Events
         .find({})
-        .then(data => {
-            response.json(data)
+        .then(event => {
+            response.json(event)
         })
 })
 
 router.post('/', (request, response) => {
-    const data = new Datum(request.body)
+    const event = new Events(request.body)
 
-    data
+    event
         .save()
         .then(result => {
             response.status(201).json(result)
